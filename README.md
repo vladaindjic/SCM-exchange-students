@@ -156,8 +156,50 @@ From the early stages of the application development, you should use the tool fo
 ## Docker
 A tool for the containerization recommended to be used is the Docker. 
 
+### Theory behind containers 
+Despite the VMs that use hardware virtualization, containers utilizes OS "virtualization"
+(see [the following post](https://www.netapp.com/blog/containers-vs-vms/) for more information).
+
+[Containers](https://www.ibm.com/cloud/learn/containers) represent executable units
+of software in which application code is packaged, along with its libraries and dependencies, 
+in common ways so that it can be run anywhere, whether it be on desktop, traditional IT, or the cloud. 
+To do this, containers take advantage of a form  of operating system (OS) virtualization in which features 
+of the OS (in the case of the Linux kernel, namely the namespaces and cgroups primitives) are leveraged to both 
+isolate processes and control the amount of CPU, memory, and disk that those processes have access to.
+Containers are small, fast, and portable because unlike a virtual machine, containers do not need include a 
+guest OS in every instance and can, instead, simply leverage the features and resources of the host OS.
+
+Even though containers running on the same host OS may simulate different Linux distributions
+[specified by the corresponding base image](https://serverfault.com/questions/755607/why-do-we-use-a-os-base-image-with-docker-if-containers-have-no-guest-os)),
+they all share the same host's kernel. A container is isolated from the rest of the Linux processes
+by leveraging the Linux's *cgroups* and *namespaces* technologies. If you're interested to get more insights about
+what happens under the hood, you may read the [following blog posts](https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work/?fbclid=IwAR1AZLm53SCu9_4oYW9x6jEs1iOgLNixgA-p74Qgq3KVcb8Rn87xmoNWkzM).
+
+### Creating a Docker Image 
+The docker image represents the schematic description of the docker container and its runtime environment.
+The image can be considered as a template for creating the container. 
+
+The convenient way of creating a docker image is by specifying the corresponding [`Dockerfile`](https://github.com/vladaindjic/DjangoAuthTests/blob/master/Dockerfile).
+As one may notice, the first line represents the base image used for building this one. 
+The commands in the following line are adding layers to the base image. The more layer image has, the bigger it is. 
+The description of each command can be found in the comment above. 
+
+More information about the `Dockerfile` commands can be found in [the official documentation](https://docs.docker.com/engine/reference/builder/).
+
+After the `Dockerfile` is specified, the image is [ready to be built](https://github.com/vladaindjic/DjangoAuthTests#run-from-local-build).
+
+
+### Running a Docker Container
+To run the container, the corresponding image must be specified.
+Container can be run by using the [image built locally](https://github.com/vladaindjic/DjangoAuthTests#run-from-local-build)
+or the [image present at the public image repository](https://github.com/vladaindjic/DjangoAuthTests#run-from-dockerhub). 
+
+
 ## Docker Hub
-A public registry recommended to be used is Docker Hub 
+A public image registry/repository recommended to be used is Docker Hub.
+When the image is built locally, it can be shared with other users by uploading it to the Docker Hub.
+To do that, follow [the guidelines present here](https://github.com/vladaindjic/DjangoAuthTests#upload-the-local-image-to-docker-hub). 
+
 
 ## Docker Compose
 A tool for orchestrating multiple docker containers on a single machine recommended to be used is Docker Compose. 
