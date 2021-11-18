@@ -192,7 +192,7 @@ After the `Dockerfile` is specified, the image is [ready to be built](https://gi
 ### Running a Docker Container
 To run the container, the corresponding image must be specified.
 Container can be run by using the [image built locally](https://github.com/vladaindjic/DjangoAuthTests#run-from-local-build)
-or the [image present at the public image repository](https://github.com/vladaindjic/DjangoAuthTests#run-from-dockerhub). 
+or the [image present at the public image repository](https://github.com/vladaindjic/DjangoAuthTests#run-the-docker-container-from-the-image-hosted-on-docker-hub). 
 
 
 ## Docker Hub
