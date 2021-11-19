@@ -203,6 +203,77 @@ To do that, follow [the guidelines present here](https://github.com/vladaindjic/
 
 ## Docker Compose
 A tool for orchestrating multiple docker containers on a single machine recommended to be used is Docker Compose. 
+To install the Docker Compose, follow [these instructions](https://docs.docker.com/compose/install/).
+
+To orchestrate multiple docker containers on a single host, it is enough to provide [docker-compose.yml file](https://github.com/vladaindjic/DjangoMimicProduction/blob/master/docker-compose.yml)
+This configuration file specifies 4 different service (containers):
+- db - The PostgreSQL runs inside this container.
+- web - The Django application runs inside this container.
+- nginx - NGINX reverse proxy server runs in this container
+- redis - Redis in-memory key-value database runs in this container and serves as a mem-cache for Django application.
+
+When specifying a container/service in configuration one, one may specified following elements:
+- `container_name` - specifies container name
+- `image` - image used to run the container
+- `ports` - specified the mappings between host ports and container ports
+- `environment` - specifies the set of environment variables used while container is running
+- `build: .` - specifies that the container is built from local image whose `Dockerfile` can be found in current directory
+- `command` - what command to execute when starting a docker container. Note that `web` container runs the [wait_for_postgres.sh script](https://github.com/vladaindjic/DjangoMimicProduction/blob/master/scripts/wait_for_postgres.sh) 
+  when starting the container. This script waits for `db` container to start (PostgreSQL database should start). After that,
+  the [start-django.sh script](https://github.com/vladaindjic/DjangoMimicProduction/blob/master/scripts/start-django.sh)
+  is run and is responsible to prepare database and run Django application inside gunicorn server.
+- `expose` - expose the port of the container to be seen by other containers in the network. Note that no mapping to
+  the host ports is specified.
+- `depends_on` - specifies the dependencies among containers
+- `links` - specifies aliases that can be used to reference this container from other docker compose containers.
+
+The container can use persistent storage, which content is available after the container stops running. 
+In this example, [bind mounts](https://docs.docker.com/storage/bind-mounts/) are used and specified by `volumes` element. 
+This kind of storage simply mounts specified host file system directory subtree to a certain location in container file system. 
+Another kind of persistent storage that can be used by the container is [volume](https://docs.docker.com/storage/volumes/).
+This is what official documentation says about the difference between a bind mount and a volume:
+*"Bind mounts have limited functionality compared to volumes. When you use a bind mount, a file or directory on 
+the host machine is mounted into a container. The file or directory is referenced by its
+absolute path on the host machine. By contrast, when you use a volume, a new directory is 
+created within Docker’s storage directory on the host machine, and Docker manages that 
+directory’s contents."*. See [documentation](https://docs.docker.com/storage/bind-mounts/) for more information.
+
+If no persistent storage is specified, then the container stores the data in writable layer,
+which is destroyed after container stops. To preserve data between multiple runs of the same container,
+it is advised to used persistent storage. 
+
+By default, docker compose creates a default bridge network and connects all specified container to it. 
+The created network is isolated from the rest of the system. The DNS resolution withing the network
+is inherited from the Linux host. For more information about the network management, read the
+following [blog post](https://earthly.dev/blog/docker-networking/).
+
+### Django configuration for Docker Compose
+Since the Django application should use the PostgreSQL instead of the default SQLite3,
+the [`DATABASES` global variable should be adapted](https://github.com/vladaindjic/DjangoMimicProduction/blob/a738bb44477724c1bc83b4ad26b4bdb846613ea1/prodavnicesajt/prodavnicesajt/settings.py#L74)
+
+To use the Redis as a in memory cache, the [CACHES global variable](https://github.com/vladaindjic/DjangoMimicProduction/blob/a738bb44477724c1bc83b4ad26b4bdb846613ea1/prodavnicesajt/prodavnicesajt/settings.py#L158)
+should be introduced. 
+
+### CI/CD and Docker Compose
+For this project, it is enough to run tests locally on the GitHub Actions runner.
+There is no need to test the integration among all 4 containers. 
+It is enough to use the default SQLite 3 database while running Django integration tests. 
+
+In [the provided example](https://github.com/vladaindjic/DjangoMimicProduction) integration tests runs
+in the test environment which is represented by the Django application and the default SQLite database.
+The production environment is represented by the docker compose configuration file which specifies the 
+docker containers described above. The production environment assume usage of real PostgreSQL database
+server and the in-memory key-value redis database. 
+
+The [Django settings.py module](https://github.com/vladaindjic/DjangoMimicProduction/blob/master/prodavnicesajt/prodavnicesajt/settings.py)
+should be able to dynamically choose the setup which corresponds to either test or production environment.
+The module assumes that the Linux environment variable [UKS_TEST_DB](https://github.com/vladaindjic/DjangoMimicProduction/blob/a738bb44477724c1bc83b4ad26b4bdb846613ea1/prodavnicesajt/prodavnicesajt/settings.py#L143) 
+specifies the type of environment. If the value of the variable is `ON`, then the test environment is
+active and the `DATABASES` variable is set the use the SQLite database. Otherwise, PostgreSQL an Redis
+is used. Note that [when triggering the workflow's jobs](https://github.com/vladaindjic/DjangoMimicProduction/blob/a738bb44477724c1bc83b4ad26b4bdb846613ea1/.github/workflows/django.yml#L10),
+the `UKS_TEST_DB` variable is set to `ON`, which
+means that the runner setups the test environment and the Django application uses the SQLite3 database.
+
 
 ## Notes 
 - This is the early version of the document and can be changed over time. 
