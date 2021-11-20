@@ -36,6 +36,11 @@ earned by properly conducting each of them:
       This build plan runs all automated tests. If they pass, the application should be containerize and the corresponding image is pushed
       on public registry.
 
+## Python Programming Languages
+
+It is recommended to use Python programming language. The guidelines about the basic usage of Python programming language
+and its tools can be found [at this repository](https://github.com/vladaindjic/SPC-exchange-students).
+
 ## Django Web Framework
 It is recommended to use Django Web Framework for the application development. 
 A good starting point to introduce yourself to the framework is by doing
