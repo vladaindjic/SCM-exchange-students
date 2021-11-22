@@ -161,6 +161,7 @@ From the early stages of the application development, you should use the tool fo
 
 ## Docker
 A tool for the containerization recommended to be used is the Docker. 
+To use it, [Docker Engine](https://docs.docker.com/engine/install/) needs to be installed first.
 
 ### Theory behind containers 
 Despite the VMs that use hardware virtualization, containers utilizes OS "virtualization"
