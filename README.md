@@ -6,7 +6,8 @@ at the Software Configuration Management course. Only practical classes are cove
 
 ## The project specification 
 
-To pass the practical part of the course, student is obliged to conduct a project focused on 
+To pass the practical part of the course, student is obliged to conduct a project as a member of a team.
+The project is focused on 
 properly maintaining the web-application life cycle from its early beginning until deploying in production.
 The total number of points that can be achieved by successfully finishing the project is 60. 
 The following list covers the items that form the project and the points that can be 
@@ -35,7 +36,7 @@ earned by properly conducting each of them:
     - (3 points) A build plan triggered when new version of the app is pushed on the main/master branch.
       This build plan runs all automated tests. If they pass, the application should be containerize and the corresponding image is pushed
       on public registry.
-
+      
 ## Python Programming Languages
 
 It is recommended to use Python programming language. The guidelines about the basic usage of Python programming language
@@ -280,8 +281,9 @@ the `UKS_TEST_DB` variable is set to `ON`, which
 means that the runner setups the test environment and the Django application uses the SQLite3 database.
 
 
-## Notes 
+## Important Notes 
+- **Students should form teams and conduct a project***.
+- Number of students that form one team depends on the total number of enrolled students in this course.
 - This is the early version of the document and can be changed over time. 
 - More information about the application's features and functionalities will be provided soon. 
-- If there are more than one exchange student, they may be allowed to work in team/teams.
 - If you notice any inconvenience, feel free to open an issue or create a pull request with the fix. 
