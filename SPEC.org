@@ -4,9 +4,10 @@
 #+OPTIONS: toc:nil
 
 * Tourists Hub
-  Tourists Hub is the platform that should help tourists plan their trips.
-  It should support a subset of features provided [[https://www.tripadvisor.com/][by the TripAdvisor]].
-  Three types of user (roles) are recognized in the platform:
+  Tourists Hub is the platform that should help tourists to plan their trips
+  by introducing themselves to the different kind of tourists locations/attractions.
+  It should support a subset of functionalities provided [[https://www.tripadvisor.com/][by the TripAdvisor]].
+  These types of user (roles) are recognized in the platform:
   - admin
   - manager
   - non-authenticated user
@@ -14,9 +15,83 @@
 
   The remainder of the document describes what each of the user is able to do.
 
-** Admin Features
+** Admin Functionalities
+Admin is able to do the following:
+- Ban user if the behavior is inappropriate.
+- Manipulate with managers' accounts:
+  - create a new account,
+  - delete an existing account,
+  - update an existing account.
+- All Functionalities that other users can do.
+  
+Feel free to add any more functionalities that are appropriate for the admin role.
 
-** Non-Authenticated User Features
+** Manager Functionalities
+Manager is able to do the following:
+- Manipulate with the categories of tourists locations/attractions/places/sightseeing
+  (e.g. monuments, hotels, restaurants, cinemas, theaters etc.
+  In the rest of the document referred as tourists locations)
+  - Create a new category
+  - Update an existing category
+  - Delete an existing category
+- Manipulate with tourists locations:
+  - Create a new location
+  - Update an existing location
+  - Delete an existing location
+- All functionalities that the below user roles can do.
 
-** Authenticated User Features
+Feel free to add any more functionalities that are appropriate for the manager role.
 
+** Non-Authenticated User Functionalities
+Non-authenticated user can do the following:
+- See the home page which shows categories of tourists location.
+- She/he can open one category and see locations of that category (e.g. all monuments in the category "Monument").
+  List of locations should be [[https://docs.djangoproject.com/en/3.2/topics/pagination/][paginated]]. The user can choose the sorting criteria applied to the locations' list.
+  (distance from the user's current location, ascending/descending by name,
+  etc.). Feel free to add more sorting criteria.
+- The user can search categories and locations by typing text in the corresponding search text field.
+- The user should be able to filter the categories and locations by some set of filters.
+  This functionality is going to be more detailed specified in the future.
+  The ways of implementing this could be by implementing one of the followings:
+  - Special form which user uses to specify filter criteria by using pairs of a combo box field and a text are field.
+    The combo box field would be used for choosing the filter parameter (e.g average rate),
+    while the text field would be used for specifying the value of filter parameter (e.g. 5)
+  - Mini Domain Specific Language for specifying filter criteria. 
+- The user can open the page of one location to see its detailed view.
+  The page should show a set of pictures, description, location, comments/review sections,
+  average grade, etc. Add more fields that are appropriate (e.g the year when the monument is built).
+- Create an account on this platform through the registration from.
+  The form requires a new user name, e-mail address, first name, last name, password
+  (which should be retyped for the verification) and optionally profile picture.
+  After the form is filled, she/he submits the registration request.
+  The platform sends the confirmation mail to the user, through which she/he verifies
+  his e-mail address and the account. After that, the user is able to log in.
+- Log in to the platform.
+
+Feel free to add any more functionalities that are appropriate for the non-authenticated user role.
+   
+** Authenticated User Functionalities
+Authenticated user can do the following:
+- Update his profile information:
+  - Profile pictures
+  - Name, last name, etc.
+  - e-mail address which should be then verified the same way described above
+  - Choose to change the password.
+    The password can be changed on a separate web-page that requires
+    typing the old password, new password and retyping new password.
+- Leave a comment/review with the set of pictures.
+- Comment review of another user.
+- Like the comment.
+- Grade the
+- Add some photos
+- Blame some user for the inappropriate behavior.
+- Logout
+- All functionalities that the non-authenticated user can do.
+
+Feel free to add any more functionalities that are appropriate for the authenticated user role.
+
+* Notes
+This is not the final specification of the project. It can be changed over time.
+If you have any question or find any inconvenience, feel free to open an issue.
+Then, we could all share some thoughts in the issue and close it by the commit
+that will appropriately update this specification document. 
