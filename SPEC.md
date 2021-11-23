@@ -1,1 +1,24 @@
-TODO: enter the specification of the application features
+
+
+# Tourists Hub
+
+Tourists Hub is the platform that should help tourists plan their trips.
+It should support a subset of features provided [by the TripAdvisor](https://www.tripadvisor.com/).
+Three types of user (roles) are recognized in the platform:
+
+-   admin
+-   manager
+-   non-authenticated user
+-   authenticated user
+
+The remainder of the document describes what each of the user is able to do.
+
+
+## Admin Features
+
+
+## Non-Authenticated User Features
+
+
+## Authenticated User Features
+
