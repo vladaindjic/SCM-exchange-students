@@ -40,7 +40,7 @@ Manager is able to do the following:
     -   Update an existing category
     -   Delete an existing category
 -   Manipulate with tourists locations:
-    -   Create a new location
+    -   Create a new location (insert description, pictures, etc.)
     -   Update an existing location
     -   Delete an existing location
 -   All functionalities that the below user roles can do.
@@ -90,11 +90,12 @@ Authenticated user can do the following:
     -   Choose to change the password.
         The password can be changed on a separate web-page that requires
         typing the old password, new password and retyping new password.
--   Leave a comment/review with the set of pictures.
+-   Leave a comment/review on a location. Beside the text, user can upload a set of
+    her/his pictures of that location.
 -   Comment review of another user.
+-   Comment a comment of review. (Arbitrary depth of commenting should be supported like [on Reddit platform](https://www.reddit.com/r/programming/comments/qzzrwi/php_creator_functions_were_named_to_fall_into/)).
 -   Like the comment.
--   Grade the
--   Add some photos
+-   Grade the location.
 -   Blame some user for the inappropriate behavior.
 -   Logout
 -   All functionalities that the non-authenticated user can do.
@@ -106,6 +107,6 @@ Feel free to add any more functionalities that are appropriate for the authentic
 
 This is not the final specification of the project. It can be changed over time.
 If you have any question or find any inconvenience, feel free to open an issue.
-Then, we could all share some thoughts in the issue and close it by the commit
+Then, we could all share some thoughts in the issue's comments and close it by the commit
 that will appropriately update this specification document. 
 
