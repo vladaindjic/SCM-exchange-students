@@ -14,7 +14,9 @@ The total number of points that can be achieved by successfully finishing the pr
 The following list covers the items that form the project and the points that can be 
 earned by properly conducting each of them:
 - (6 points) A Class Diagram that describes the model of you application.
-- (20 points) Implementation of [the web application](https://github.com/vladaindjic/SCM-exchange-students/blob/master/SPEC.md). 
+- (20 points) Implementation of 
+<!-- [the web application](https://github.com/vladaindjic/SCM-exchange-students/blob/master/SPEC.md).-->
+
 - (6 points) Implementation of the tests:
   - (2 points) Unit tests - Each component (a class) should be covered by unit tests.
   - (4 points) Integration tests - The server side of the application should be covered by integration tests.
