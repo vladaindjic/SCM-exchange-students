@@ -8,8 +8,7 @@ at the Software Configuration Management course. Only practical classes are cove
 
 To pass the practical part of the course, student is obliged to conduct a project as a member of a team.
 The project is focused on 
-properly maintaining [the web-application (simplified *GitHub*)](https://docs.google.com/document/d/1RakPUxM7LRqUP-xjw0dK6PoL5wmXG24skAjfang6J0o/edit)
-<!-- [the web-application](https://github.com/vladaindjic/SCM-exchange-students/blob/master/SPEC.md) --> life cycle from its early beginning until deploying in production.
+properly maintaining [the web-application (simplified *GitHub*)](https://docs.google.com/document/d/1RakPUxM7LRqUP-xjw0dK6PoL5wmXG24skAjfang6J0o/edit) <!-- [the web-application](https://github.com/vladaindjic/SCM-exchange-students/blob/master/SPEC.md) --> life cycle from its early beginning until deploying in production.
 The total number of points that can be achieved by successfully finishing the project is 60. 
 The following list covers the items that form the project and the points that can be 
 earned by properly conducting each of them:
